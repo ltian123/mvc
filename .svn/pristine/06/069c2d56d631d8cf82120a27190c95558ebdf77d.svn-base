@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 根标签的标签名 -->
+<pattern value="action-mappings">
+	<!-- 根标签下的子标签action -->
+	<pattern value="action">
+		<!-- 将xml中配置的action标签,封装成config.ActionConfig对象 -->
+		<object-create-rule classname="config.ActionConfig"></object-create-rule>
+		<!-- 将action标签中的所有属性按照名字设置到ActionConfig对象的属性上 -->
+		<set-properties-rule></set-properties-rule>
+		<!-- 将每一个ActionConfig对象放入到ActionMappingConfig中 -->
+		<set-next-rule methodname="addAction"></set-next-rule>
+		<!-- 设置action的子标签forward -->
+		<pattern value="forward">
+			<object-create-rule classname="config.ForwardConfig"></object-create-rule>
+			<set-properties-rule></set-properties-rule>
+			<set-next-rule methodname="addForward"></set-next-rule>
+		</pattern>
+	</pattern>
+</pattern>
